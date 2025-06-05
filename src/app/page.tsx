@@ -303,11 +303,11 @@ export default function Home() {
   // Initialize color values on mount
   useEffect(() => {
     updateColorValues(color);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div className="flex w-full min-h-screen h-full py-20 px-4 justify-start">
+    <div className="flex w-full min-h-screen h-full py-20 px-4 justify-center">
       <Popover onOpenChange={handlePopoverChange}>
         <PopoverTrigger asChild>
           <Button
