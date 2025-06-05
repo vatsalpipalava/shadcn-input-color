@@ -303,6 +303,7 @@ export default function Home() {
   // Initialize color values on mount
   useEffect(() => {
     updateColorValues(color);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
