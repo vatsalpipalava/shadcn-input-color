@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "shadcn input color",
-  description: "Add shadcn color picker component to your project",
+  title: "shadcn-input-color",
+  description:
+    "Add shadcn color picker component to your project. Open source, Open code.",
 };
 
 export default function RootLayout({

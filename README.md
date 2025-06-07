@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Color Picker Component
 
-## Getting Started
+A modern, customizable color picker component built with React, Next.js, and Tailwind CSS. This component provides an intuitive interface for selecting colors with support for various color formats.
 
-First, run the development server:
+## Features
+
+- 🎨 Interactive color picker with visual feedback
+- 📱 Responsive design
+- 🎯 Multiple color format support
+- 🎭 Customizable appearance
+- ⚡ Built with Next.js and React
+- 🎨 Styled with Tailwind CSS
+
+## Installation
+
+1. First, install shadcn/ui components:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Install shadcn/ui CLI
+npx shadcn-ui@latest init
+
+# Install required components
+npx shadcn-ui@latest add popover
+npx shadcn-ui@latest add select
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install additional dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install react-colorful
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Copy the component files to your project:
 
-## Learn More
+```bash
+# Create a components directory if you don't have one
+mkdir -p src/components
 
-To learn more about Next.js, take a look at the following resources:
+# Copy the color picker component files
+cp -r src/components/color-picker/* your-project/src/components/
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Here's a basic example of how to use the color picker component:
 
-## Deploy on Vercel
+```tsx
+import { ColorPicker } from "@/components/color-picker";
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+export default function YourComponent() {
+  return (
+    <div>
+      <ColorPicker
+        value="#ff0000"
+        onChange={(color) => console.log("Selected color:", color)}
+      />
+    </div>
+  );
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Props
+
+| Prop      | Type                    | Description                          | Default   |
+| --------- | ----------------------- | ------------------------------------ | --------- |
+| value     | string                  | The current color value (hex format) | '#000000' |
+| onChange  | (color: string) => void | Callback when color changes          | -         |
+| className | string                  | Additional CSS classes               | -         |
+
+## Preview
+
+![Color Picker Preview](public/color-picker-preview.png)
+
+## Development
+
+To run the project locally:
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The development server will start at `http://localhost:3000`
+
+## Building for Production
+
+```bash
+# Build the project
+npm run build
+
+# Start production server
+npm start
+```
+
+## License
+
+MIT License - feel free to use this component in your projects!
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
