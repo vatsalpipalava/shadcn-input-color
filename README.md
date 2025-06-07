@@ -1,4 +1,4 @@
-# Color Picker Component
+# shadcn/ui Color Picker Component
 
 A modern, customizable color picker component built with React, Next.js, and Tailwind CSS. This component provides an intuitive interface for selecting colors with support for various color formats.
 
