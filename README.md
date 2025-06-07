@@ -67,6 +67,34 @@ export default function YourComponent() {
 | onChange  | (color: string) => void | Callback when color changes          | -         |
 | className | string                  | Additional CSS classes               | -         |
 
+## Customization
+
+You can customize the appearance of the color picker by overriding the default styles. Here's an example of how to customize the component:
+
+```css
+/* Add these styles to your CSS file */
+.your-component .react-colorful {
+  height: 240px;
+}
+
+.your-component .react-colorful__saturation {
+  border-radius: 4px 4px 0 0;
+}
+
+.your-component .react-colorful__hue {
+  height: 40px;
+  border-radius: 0 0 4px 4px;
+}
+
+.your-component .react-colorful__hue-pointer {
+  width: 12px;
+  height: inherit;
+  border-radius: 0;
+}
+```
+
+For more customization options and examples, visit the [react-colorful documentation](https://www.npmjs.com/package/react-colorful#customization).
+
 ## Preview
 
 ![Color Picker Preview](public/color-picker-preview.png)

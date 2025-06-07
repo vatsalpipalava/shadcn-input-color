@@ -26,7 +26,7 @@ export default function HeroSection({ color }: HeroSectionProps) {
           shadcn-input-color
         </h1>
         <Button variant={"outline"} size={"icon"} asChild>
-          <Link href="/">
+          <Link href="https://github.com/vatsalpipalava/shadcn-input-color/blob/main/src/components/input-color.tsx">
             <GithubIcon />
           </Link>
         </Button>

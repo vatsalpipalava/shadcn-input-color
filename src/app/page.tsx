@@ -28,7 +28,7 @@ export default function Home() {
             <p>Built with Next.js, shadcn/ui, and React Colorful</p>
             <p className="mt-1">
               <a
-                href="https://github.com/yourusername/color-picker"
+                href="https://github.com/vatsalpipalava/shadcn-input-color/blob/main/src/components/input-color.tsx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline hover:text-primary"
