@@ -52,7 +52,7 @@ export default function HeroSection({ color, colorAlpha }: HeroSectionProps) {
               shadcn/ui component
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white drop-shadow-lg">
-              Color Picker Alpha
+              Color Picker
             </h1>
             <p className="text-white/90 text-lg drop-shadow-md">
               A beautiful and accessible color picker built with shadcn/ui and
@@ -92,7 +92,7 @@ export default function HeroSection({ color, colorAlpha }: HeroSectionProps) {
               shadcn/ui component
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-white drop-shadow-lg">
-              Color Picker
+              Color Picker Alpha
             </h1>
             <p className="text-white/90 text-lg drop-shadow-md">
               A beautiful and accessible color picker built with shadcn/ui and
