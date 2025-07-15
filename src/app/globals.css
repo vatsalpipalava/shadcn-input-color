@@ -116,12 +116,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
-.color-picker .react-colorful{
+.color-picker .react-colorful {
   align-items: flex-end;
 }
 
@@ -144,11 +145,24 @@
 
 .color-picker .react-colorful__hue {
   height: 16px;
-  width: 200px;
+  width: 210px;
   border-radius: 4px;
 }
 
-.color-picker  .react-colorful__hue-pointer{
+.color-picker .react-colorful__hue-pointer {
+  width: 16px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.color-picker .react-colorful__alpha {
+  height: 16px;
+  width: 244.79px;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+
+.color-picker .react-colorful__alpha-pointer {
   width: 16px;
   height: 20px;
   border-radius: 4px;

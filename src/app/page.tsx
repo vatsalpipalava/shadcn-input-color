@@ -5,20 +5,37 @@ import InputColor from "@/components/input-color";
 import HeroSection from "@/components/hero-section";
 
 export default function Home() {
-  const [currentColor, setCurrentColor] = useState("#FF0000");
+  const [color, setColor] = useState("#FF0000");
+  const [colorWithAlpha, setColorWithAlpha] = useState("#FF0000FF");
 
   return (
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-4">
         <div className="space-y-8">
-          <HeroSection color={currentColor} />
+          <HeroSection color={colorWithAlpha} />
 
           <div className="mx-auto max-w-3xl">
             <div className="space-y-4">
               <div className="rounded-lg border bg-card p-6">
                 <h2 className="text-lg font-semibold mb-4">Pick a Color</h2>
                 <div className="flex justify-center">
-                  <InputColor onColorChange={setCurrentColor} />
+                  {/* <InputColor onColorChange={setCurrentColor} /> */}
+                  {/* <InputColor
+                    label="Background Color"
+                    value={color}
+                    onChange={setColor}
+                    onBlur={() => console.log("Color picker blurred")}
+                    className="mt-0"
+                  /> */}
+
+                  <InputColor
+                    label="Background Color with Alpha"
+                    value={colorWithAlpha}
+                    onChange={setColorWithAlpha}
+                    onBlur={() => console.log("Alpha color picker blurred")}
+                    alpha={true}
+                    className="mt-0"
+                  />
                 </div>
               </div>
             </div>
