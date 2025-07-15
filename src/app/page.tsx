@@ -12,21 +12,20 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-4">
         <div className="space-y-8">
-          <HeroSection color={colorWithAlpha} />
+          <HeroSection color={color} colorAlpha={colorWithAlpha} />
 
           <div className="mx-auto max-w-3xl">
             <div className="space-y-4">
               <div className="rounded-lg border bg-card p-6">
                 <h2 className="text-lg font-semibold mb-4">Pick a Color</h2>
-                <div className="flex justify-center">
-                  {/* <InputColor onColorChange={setCurrentColor} /> */}
-                  {/* <InputColor
-                    label="Background Color"
+                <div className="flex justify-center gap-20">
+                  <InputColor
+                    label="Background Color with Alpha"
                     value={color}
                     onChange={setColor}
-                    onBlur={() => console.log("Color picker blurred")}
+                    onBlur={() => console.log("color picker")}
                     className="mt-0"
-                  /> */}
+                  />
 
                   <InputColor
                     label="Background Color with Alpha"
