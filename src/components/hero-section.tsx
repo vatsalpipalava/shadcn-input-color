@@ -36,7 +36,7 @@ export default function HeroSection({ color, colorAlpha }: HeroSectionProps) {
           className="absolute inset-0 rounded z-0"
           style={{ backgroundColor: bgColor }}
         />
-        <nav className="flex justify-between items-center border-b pb-6 border-border/50">
+        <nav className="relative z-20 flex justify-between items-center border-b pb-6 border-border/50">
           <h1 className="text-white/90 text-lg drop-shadow-md font-semibold">
             shadcn-input-color
           </h1>
@@ -76,7 +76,7 @@ export default function HeroSection({ color, colorAlpha }: HeroSectionProps) {
           className="absolute inset-0 rounded z-0"
           style={{ backgroundColor: bgAlphaColor }}
         />
-        <nav className="flex justify-between items-center border-b pb-6 border-border/50">
+        <nav className="relative z-20 flex justify-between items-center border-b pb-6 border-border/50">
           <h1 className="text-white/90 text-lg drop-shadow-md font-semibold">
             shadcn-input-color
           </h1>
