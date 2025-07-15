@@ -6,7 +6,7 @@ import HeroSection from "@/components/hero-section";
 
 export default function Home() {
   const [color, setColor] = useState("#FF0000");
-  const [colorWithAlpha, setColorWithAlpha] = useState("#FF0000FF");
+  const [colorWithAlpha, setColorWithAlpha] = useState("#FF000080");
 
   return (
     <main className="min-h-screen bg-background">
@@ -20,7 +20,7 @@ export default function Home() {
                 <h2 className="text-lg font-semibold mb-4">Pick a Color</h2>
                 <div className="flex justify-center gap-20">
                   <InputColor
-                    label="Background Color with Alpha"
+                    label="Background Color without alpha"
                     value={color}
                     onChange={setColor}
                     onBlur={() => console.log("color picker")}
