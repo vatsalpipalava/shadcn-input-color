@@ -90,6 +90,9 @@ export default function InputColor({
       };
     }
   });
+  // Add a state to store the current HEX/HEXA input value
+  const [hexInputValue, setHexInputValue] = useState(value);
+  const [hexInputError, setHexInputError] = useState<string | null>(null);
 
   // Update all color formats when color changes
   const updateColorValues = (newColor: string) => {
@@ -103,6 +106,7 @@ export default function InputColor({
         rgba,
         hsla,
       });
+      setHexInputValue(newColor.toUpperCase());
     } else {
       const rgb = hexToRgb(newColor);
       const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
@@ -111,6 +115,7 @@ export default function InputColor({
         rgb,
         hsl,
       });
+      setHexInputValue(newColor.toUpperCase());
     }
   };
 
@@ -132,19 +137,26 @@ export default function InputColor({
       formattedValue.length <= maxLength &&
       /^#[0-9A-Fa-f]*$/.test(formattedValue)
     ) {
+      setHexInputValue(formattedValue); // Always update the input value
+      // Update color and color values for any valid partial hex
+      onChange(formattedValue);
+      updateColorValues(formattedValue);
       try {
         if (formattedValue.length === maxLength) {
-          const validatedColor = colorSchema.parse(formattedValue);
-          onChange(validatedColor);
-          updateColorValues(validatedColor);
+          // Only validate when full length
+          colorSchema.parse(formattedValue);
+          // Already updated above
+          setHexInputError(null);
         } else {
-          onChange(formattedValue);
-          setColorValues((prev) => ({ ...prev, hex: formattedValue }));
+          // Not full length, so log
+          console.log("Enter a valid color");
+          setHexInputError("Enter a valid color");
         }
       } catch (validationError) {
         if (validationError instanceof z.ZodError) {
-          onChange(formattedValue);
-          setColorValues((prev) => ({ ...prev, hex: formattedValue }));
+          // Do not update color, just keep the input value
+          console.log("Enter a valid color");
+          setHexInputError("Enter a valid color");
         }
       }
     }
@@ -274,21 +286,17 @@ export default function InputColor({
     }
   };
 
-  // Initialize color values on mount
+  // Initialize color values on mount and when value changes from outside
   useEffect(() => {
     updateColorValues(value);
+    setHexInputValue(value.toUpperCase());
   }, [value]);
-
-  // Get display color for the color button
-  const getDisplayColor = () => {
-    if (alpha && colorValues.rgba) {
-      return `rgba(${colorValues.rgba.r}, ${colorValues.rgba.g}, ${colorValues.rgba.b}, ${colorValues.rgba.a})`;
-    }
-    return value;
-  };
 
   // Get current hex value for display
   const getCurrentHexValue = () => {
+    if (colorFormat === "HEX" || colorFormat === "HEXA") {
+      return hexInputValue;
+    }
     if (alpha && colorValues.rgba) {
       return rgbaToHex(
         colorValues.rgba.r,
@@ -309,7 +317,7 @@ export default function InputColor({
             <Button
               className="border-border h-12 w-12 border shadow-none relative overflow-hidden"
               size={"icon"}
-              style={{ backgroundColor: getDisplayColor() }}
+              style={{ backgroundColor: hexInputValue }}
             >
               {alpha && colorValues.rgba && colorValues.rgba.a < 1 && (
                 <div
@@ -524,6 +532,9 @@ export default function InputColor({
         </div>
       </div>
       {error && <p className="text-destructive mt-1.5 text-sm">{error}</p>}
+      {hexInputError && (
+        <p className="text-destructive mt-1.5 text-sm">{hexInputError}</p>
+      )}
     </div>
   );
 }
