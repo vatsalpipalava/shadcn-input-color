@@ -1,12 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { HexColorPicker, HexAlphaColorPicker } from "react-colorful";
 import {
   Select,
   SelectContent,
@@ -14,22 +15,21 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Loader2, PipetteIcon } from "lucide-react";
-import { useState, useEffect } from "react";
 import {
   hexToRgb,
-  rgbToHsl,
-  rgbToHex,
-  hslToRgb,
   hexToRgba,
+  hslaToRgba,
+  hslToRgb,
   rgbaToHex,
   rgbaToHsla,
-  hslaToRgba,
+  rgbToHex,
+  rgbToHsl,
 } from "@/helpers/color-converter";
-import { z } from "zod";
 import { cn } from "@/lib/utils";
+import { Loader2, PipetteIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { HexAlphaColorPicker, HexColorPicker } from "react-colorful";
+import { z } from "zod";
 
 export const colorSchema = z
   .string()
@@ -48,6 +48,7 @@ interface ColorPickerProps {
   error?: string;
   className?: string;
   alpha?: boolean;
+  allowedFormats?: Array<'HEX' | 'RGB' | 'HSL'>
 }
 
 interface ColorValues {
@@ -67,6 +68,7 @@ export default function InputColor({
   error,
   className = "mt-6",
   alpha = false,
+  allowedFormats = ['HEX', 'RGB', 'HSL'],
 }: ColorPickerProps) {
   const [colorFormat, setColorFormat] = useState(alpha ? "HEXA" : "HEX");
   const [colorValues, setColorValues] = useState<ColorValues>(() => {
@@ -324,9 +326,9 @@ export default function InputColor({
                 <div
                   className="absolute inset-0 opacity-20"
                   style={{
-                    backgroundImage: `linear-gradient(45deg, #ccc 25%, transparent 25%), 
-                                    linear-gradient(-45deg, #ccc 25%, transparent 25%), 
-                                    linear-gradient(45deg, transparent 75%, #ccc 75%), 
+                    backgroundImage: `linear-gradient(45deg, #ccc 25%, transparent 25%),
+                                    linear-gradient(-45deg, #ccc 25%, transparent 25%),
+                                    linear-gradient(45deg, transparent 75%, #ccc 75%),
                                     linear-gradient(-45deg, transparent 75%, #ccc 75%)`,
                     backgroundSize: "8px 8px",
                     backgroundPosition: "0 0, 0 4px, 4px -4px, -4px 0px",
@@ -362,38 +364,46 @@ export default function InputColor({
                 )}
               </div>
               <div className="flex gap-2">
-                <Select value={colorFormat} onValueChange={setColorFormat}>
-                  <SelectTrigger className="!h-7 !w-[4.8rem] rounded-sm px-2 py-1 !text-sm">
-                    <SelectValue placeholder="Color" />
-                  </SelectTrigger>
-                  <SelectContent className="min-w-20">
-                    {alpha ? (
-                      <>
-                        <SelectItem value="HEXA" className="text-sm h-7">
-                          HEXA
-                        </SelectItem>
-                        <SelectItem value="RGBA" className="text-sm h-7">
-                          RGBA
-                        </SelectItem>
-                        <SelectItem value="HSLA" className="text-sm h-7">
-                          HSLA
-                        </SelectItem>
-                      </>
-                    ) : (
-                      <>
-                        <SelectItem value="HEX" className="text-sm h-7">
-                          HEX
-                        </SelectItem>
-                        <SelectItem value="RGB" className="text-sm h-7">
-                          RGB
-                        </SelectItem>
-                        <SelectItem value="HSL" className="text-sm h-7">
-                          HSL
-                        </SelectItem>
-                      </>
-                    )}
-                  </SelectContent>
-                </Select>
+                {allowedFormats.length > 1 && (
+                  <Select value={colorFormat} onValueChange={setColorFormat}>
+                    <SelectTrigger className="!h-7 !w-[4.8rem] rounded-sm px-2 py-1 !text-sm">
+                      <SelectValue placeholder="Color" />
+                    </SelectTrigger>
+                    <SelectContent className="min-w-20">
+                      {alpha ? (
+                        <>
+                          {allowedFormats.includes("HEX") && (<SelectItem value="HEXA" className="text-sm h-7">
+                            HEXA
+                          </SelectItem>
+                          )}
+                          {allowedFormats.includes("RGB") && (<SelectItem value="RGBA" className="text-sm h-7">
+                            RGBA
+                          </SelectItem>
+                          )}
+                          {allowedFormats.includes("HSL") && (<SelectItem value="HSLA" className="text-sm h-7">
+                            HSLA
+                          </SelectItem>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          {allowedFormats.includes("HEX") && (<SelectItem value="HEX" className="text-sm h-7">
+                            HEX
+                          </SelectItem>
+                          )}
+                          {allowedFormats.includes("RGB") && (<SelectItem value="RGB" className="text-sm h-7">
+                            RGB
+                          </SelectItem>
+                          )}
+                          {allowedFormats.includes("HSL") && (<SelectItem value="HSL" className="text-sm h-7">
+                            HSL
+                          </SelectItem>
+                          )}
+                        </>
+                      )}
+                    </SelectContent>
+                  </Select>
+                )}
                 {colorFormat === "HEX" || colorFormat === "HEXA" ? (
                   <Input
                     className="h-7 w-[160px] rounded-sm text-sm"
